@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detective Conan Movie 28</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Be+Vietnam+Pro:wght@300;400;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Be Vietnam Pro', Arial, sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animated background particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #00d4ff;
+            border-radius: 50%;
+            animation: float 6s infinite ease-in-out;
+            opacity: 0.7;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.7; }
+            50% { transform: translateY(-20px) rotate(180deg); opacity: 1; }
+        }
+
+        .container {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .invitation-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            padding: 40px;
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+            max-width: 800px;
+            width: 100%;
+            animation: cardGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes cardGlow {
+            0% { box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 0 rgba(0, 212, 255, 0); }
+            100% { box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 30px rgba(0, 212, 255, 0.3); }
+        }
+
+        .card-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, 
+                rgba(0, 212, 255, 0.1) 0%, 
+                rgba(255, 0, 150, 0.05) 50%, 
+                rgba(0, 212, 255, 0.1) 100%);
+            border-radius: 30px;
+            pointer-events: none;
+        }
+
+        .movie-poster {
+            width: 200px;
+            height: 280px;
+            border-radius: 15px;
+            position: relative;
+            margin: 0 auto 30px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+            animation: posterFloat 4s ease-in-out infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #ff0066, #0066ff);
+        }
+
+        @keyframes posterFloat {
+            0%, 100% { transform: translateY(0px) rotateY(0deg); }
+            50% { transform: translateY(-10px) rotateY(5deg); }
+        }
+
+        .poster-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+            border-radius: 15px;
+        }
+
+        .poster-content {
+            position: absolute;
+            inset: 0;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(45deg, 
+                rgba(0, 0, 0, 0.8) 0%, 
+                rgba(0, 50, 100, 0.9) 50%, 
+                rgba(100, 0, 50, 0.8) 100%);
+            color: white;
+            font-weight: bold;
+            text-align: center;
+            padding: 20px;
+            border-radius: 15px;
+        }
+
+        .poster-text {
+            font-family: 'Be Vietnam Pro', Arial, sans-serif;
+            font-size: 16px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+            line-height: 1.3;
+        }
+
+        .movie-title {
+            font-family: 'Be Vietnam Pro', Arial, sans-serif;
+            font-size: 2.2em;
+            font-weight: 900;
+            text-align: center;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #00d4ff 0%, #ff0066 50%, #00d4ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            animation: titleGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes titleGlow {
+            0% { filter: brightness(1); }
+            100% { filter: brightness(1.2); }
+        }
+
+        .subtitle {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.1em;
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        .invitation-text {
+            text-align: center;
+            color: #00d4ff;
+            font-size: 1.3em;
+            font-weight: 600;
+            margin-bottom: 30px;
+            text-shadow: 0 2px 10px rgba(0, 212, 255, 0.5);
+        }
+
+        .movie-details {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 30px 0;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+        }
+
+        .detail-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 15px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            border-left: 4px solid #00d4ff;
+            transition: all 0.3s ease;
+        }
+
+        .detail-item:hover {
+            background: rgba(0, 212, 255, 0.1);
+            transform: translateX(10px);
+        }
+
+        .detail-icon {
+            width: 40px;
+            height: 40px;
+            margin-right: 20px;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #00d4ff;
+        }
+
+        .detail-content {
+            flex: 1;
+        }
+
+        .detail-label {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9em;
+            font-weight: 400;
+            margin-bottom: 5px;
+        }
+
+        .detail-value {
+            color: white;
+            font-size: 1.1em;
+            font-weight: 600;
+        }
+
+        .special-note {
+            text-align: center;
+            background: linear-gradient(135deg, rgba(255, 0, 102, 0.2), rgba(0, 212, 255, 0.2));
+            border: 1px solid rgba(255, 0, 102, 0.3);
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 30px;
+            color: white;
+            font-style: italic;
+        }
+
+        .accept-button {
+            display: block;
+            width: 100%;
+            max-width: 300px;
+            margin: 30px auto 0;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #ff0066, #0066ff);
+            border: none;
+            border-radius: 50px;
+            color: white;
+            font-size: 1.2em;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .accept-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+            filter: brightness(1.1);
+        }
+
+        .accept-button:active {
+            transform: translateY(-1px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .invitation-card {
+                padding: 25px;
+                margin: 10px;
+            }
+            
+            .movie-title {
+                font-size: 1.8em;
+            }
+            
+            .movie-poster {
+                width: 150px;
+                height: 210px;
+            }
+
+            .poster-image {
+                border-radius: 15px;
+            }
+            
+            .poster-text {
+                font-size: 14px;
+            }
+            
+            .detail-item {
+                flex-direction: column;
+                text-align: center;
+                padding: 20px;
+            }
+            
+            .detail-icon {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="particles"></div>
+    
+    <div class="container">
+        <div class="invitation-card">
+            <div class="card-overlay"></div>
+            
+            <div class="movie-poster">
+                <img src="./Poster Conan movie 28.jpg" alt="Detective Conan Movie 28 Poster" class="poster-image">
+                <!-- <div class="poster-content">
+                    <div class="poster-text">
+                        DETECTIVE<br/>
+                        CONAN<br/>
+                        MOVIE 28
+                    </div>
+                </div> -->
+            </div>
+            
+            <h1 class="movie-title">Thám tử lừng danh Conan:</h1>
+            <p class="subtitle">Dư ảnh của độc nhãn</p>
+            
+            <p class="invitation-text">🎬 Lời mời xem phim đặc biệt dành cho Manh! 🎬</p>
+            
+            <div class="movie-details">
+                <div class="detail-item">
+                    <div class="detail-icon">🕐</div>
+                    <div class="detail-content">
+                        <div class="detail-label">Giờ chiếu</div>
+                        <div class="detail-value">13:45 - Thứ 7, 26/07/2025</div>
+                    </div>
+                </div>
+                
+                <div class="detail-item">
+                    <div class="detail-icon">🏢</div>
+                    <div class="detail-content">
+                        <div class="detail-label">Rạp chiếu</div>
+                        <div class="detail-value">Lotte Cinema Bắc Giang</div>
+                    </div>
+                </div>
+                
+                <div class="detail-item">
+                    <div class="detail-icon">📍</div>
+                    <div class="detail-content">
+                        <div class="detail-label">Địa điểm</div>
+                        <div class="detail-value">Tầng trệt, TTTM Go! Bắc Giang</div>
+                    </div>
+                </div>
+                
+                <div class="detail-item">
+                    <div class="detail-icon">🎫</div>
+                    <div class="detail-content">
+                        <div class="detail-label">Phòng chiếu</div>
+                        <div class="detail-value">Screen 2 - Ghế G7, G8</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- <div class="special-note">
+                "Hãy cùng nhau khám phá bí ẩn mới nhất của thám tử nhỏ tuổi tài năng nhất! 
+                Đến sớm 15 phút để có thể mua đồ ăn nhé! 🍿"
+            </div> -->
+            
+            <button class="accept-button" onclick="sendResponse()">
+                Đồng ý tham gia! ✨
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Tạo hiệu ứng particles
+        function createParticles() {
+            const particlesContainer = document.querySelector('.particles');
+            const particleCount = 50;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Hiệu ứng hover cho card
+        function addCardInteractivity() {
+            const card = document.querySelector('.invitation-card');
+            
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = (y - centerY) / 20;
+                const rotateY = (centerX - x) / 20;
+                
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
+            });
+        }
+
+        // Hàm xử lý khi nhấn nút đồng ý
+        function sendResponse() {
+            const button = document.querySelector('.accept-button');
+            button.style.background = 'linear-gradient(135deg, #00ff88, #0088ff)';
+            button.innerHTML = '🎉 Ngon! Không gặp không về! 🎉';
+            
+            // Tạo hiệu ứng confetti
+            createConfetti();
+        }
+
+        // Tạo hiệu ứng confetti
+        function createConfetti() {
+            const colors = ['#ff0066', '#0066ff', '#00d4ff', '#ff6600', '#66ff00'];
+            
+            for (let i = 0; i < 100; i++) {
+                const confetti = document.createElement('div');
+                confetti.style.position = 'fixed';
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.top = '-10px';
+                confetti.style.width = '10px';
+                confetti.style.height = '10px';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.pointerEvents = 'none';
+                confetti.style.zIndex = '1000';
+                confetti.style.borderRadius = '50%';
+                
+                document.body.appendChild(confetti);
+                
+                const animation = confetti.animate([
+                    { transform: 'translateY(0) rotate(0deg)', opacity: 1 },
+                    { transform: `translateY(100vh) rotate(720deg)`, opacity: 0 }
+                ], {
+                    duration: Math.random() * 2000 + 1000,
+                    easing: 'ease-out'
+                });
+                
+                animation.onfinish = () => confetti.remove();
+            }
+        }
+
+        // Khởi tạo các hiệu ứng khi trang load
+        document.addEventListener('DOMContentLoaded', () => {
+            createParticles();
+            addCardInteractivity();
+            
+            // Hiệu ứng xuất hiện cho card
+            const card = document.querySelector('.invitation-card');
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(50px) scale(0.9)';
+            
+            setTimeout(() => {
+                card.style.transition = 'all 1s ease-out';
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0) scale(1)';
+            }, 100);
+        });
+
+        // Cập nhật thời gian thực
+        function updateTime() {
+            const now = new Date();
+            const timeElements = document.querySelectorAll('.detail-value');
+            // Có thể thêm logic cập nhật thời gian thực tế ở đây nếu cần
+        }
+
+        setInterval(updateTime, 1000);
+    </script>
+</body>
+</html>
